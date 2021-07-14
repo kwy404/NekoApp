@@ -1,0 +1,15 @@
+Frontend
+
+
+Api
+Funcoas da rede social
+Publicacaoes feed de noticias
+Conversas privadas
+Conversas grupos
+
+
+https://github.com/react-icons/react-icons
+https://github.com/wagerfield/parallax
+
+https://github.com/redventures/reduce
+reduce js

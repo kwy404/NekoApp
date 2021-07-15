@@ -47,6 +47,8 @@ const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {
+  // When mount app
+  document.querySelector(`#app`).classList.add('mounted');
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>

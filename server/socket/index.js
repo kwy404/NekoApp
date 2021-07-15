@@ -1,4 +1,4 @@
-module.exports = () => {
+module.exports = (object) => {
     require('dotenv').config();
 
     const express = require('express')
@@ -14,7 +14,12 @@ module.exports = () => {
     });
 
     io.on("connection", socket => {
-        console.log(socket.id)
+        socket.on(`tokenValida`, token => {
+            const user = (user) => {
+                socket.emit(`user`, user)
+            }
+            object.validarToken(token, user)
+        })
     });
 
     console.log(`Socket.io running in http://localhost:${process.env.SocketPORT}`)

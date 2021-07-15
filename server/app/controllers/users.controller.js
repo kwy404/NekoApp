@@ -27,3 +27,9 @@ exports.create = (req, res) => {
   });
 };
 
+// Validar token
+exports.validarToken = (token, socket) => {
+  // Find By Token
+  User.findByToken(token, socket)
+};
+

@@ -20,4 +20,15 @@ User.create = (newUser, result) => {
   });
 };
 
+User.findByToken = (token, voidFunc) => {
+  sql.query(`SELECT * FROM users WHERE token = ?`, (token), (err, res) => {
+    if (err) {
+      return;
+    }
+    if (res.length) {
+      voidFunc(res[0])
+    }
+  });
+};
+
 module.exports = User;

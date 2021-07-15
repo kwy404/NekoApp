@@ -1,6 +1,6 @@
 /**
  *
- * App
+ * Dashboard
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
@@ -19,14 +19,15 @@
  const { SubMenu } = Menu;
  const { Header, Content, Sider } = Layout;
  
- export function HomePage() {
+ export function Dashboard(props) {
    return (
      <div>
         <Helmet
-        defaultTitle={`NekoApp - Início`}
+        defaultTitle={`NekoApp - Dashboard`}
         >
         <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
+        <h1>Logged with {props.user.username}</h1>
      </div>
    );
  }

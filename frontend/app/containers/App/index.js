@@ -14,27 +14,13 @@ import { Switch, Route } from 'react-router-dom';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
-import { HomePage } from '../HomePage';
+import { HomePage } from '../Home';
 import { Dashboard } from '../Dashboard';
 
 import 'antd/dist/antd.css';
 
-import { userLogin } from "./socketFunc"
-import { socket } from '../../socket';
-
-//Validar login
-userLogin()
-
 export default function App() {
-  const [user, setUser] = useState({});
-  const [logged, setLogged] = useState(false);
-  const socketOn = () => {
-    socket.on('user', user => {
-      setUser(user)
-      setLogged(true)
-    })
-  }
-  socketOn()
+  
   return (
     <div>
       <Helmet
@@ -44,10 +30,7 @@ export default function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" 
-        component={() => 
-        !logged ? HomePage : <Dashboard user={user}/>
-        }
-        user={user}
+        component={HomePage}
         />
         <Route path="" 
         component={NotFoundPage} />

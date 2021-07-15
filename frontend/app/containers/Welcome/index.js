@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
- import React from 'react';
+ import React, { Component, useState } from 'react';
  import { Helmet } from 'react-helmet';
  import styled from 'styled-components';
  
@@ -18,8 +18,11 @@
  
  const { SubMenu } = Menu;
  const { Header, Content, Sider } = Layout;
+
  
- export function HomePage() {
+import { userLogin } from "../App/socketFunc";
+ 
+ export function Welcome() {
    return (
      <div>
         <Helmet
@@ -27,6 +30,9 @@
         >
         <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
+        <div>
+          <h1>Welcome page</h1>
+        </div>
      </div>
    );
  }

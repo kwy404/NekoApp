@@ -60,7 +60,7 @@ User.login = (data, voidFunc) => {
       return;
     }
     if (res.length) {
-      const tokenGenerate = generate_token(50)
+      const tokenGenerate = generate_token(244)
       User.updateToken(data.username, tokenGenerate, voidFunc)
     } else{
       voidFunc({error: true, message: `Login ou senha invalidos.`, type: `login`})

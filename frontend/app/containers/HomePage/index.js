@@ -11,13 +11,13 @@
  import styled from 'styled-components';
  
  import GlobalStyle from '../../global-styles';
+ import { socket } from '../../socket';
  
  import { Layout, Menu, Breadcrumb } from 'antd';
  import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
  
  const { SubMenu } = Menu;
  const { Header, Content, Sider } = Layout;
- 
  
  export function HomePage() {
    return (

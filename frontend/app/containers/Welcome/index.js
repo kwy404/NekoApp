@@ -9,7 +9,7 @@
  import React, { Component, useState } from 'react';
  import { Helmet } from 'react-helmet';
  import styled from 'styled-components';
- 
+
  import GlobalStyle from '../../global-styles';
  import { socket } from '../../socket';
  
@@ -23,6 +23,16 @@
 import { userLogin } from "../App/socketFunc";
  
  export function Welcome() {
+  const [username, setUsername] = useState(``);
+  const [password, setPassword] = useState(``);
+  const logar = () => {
+    if(username && password){
+      socket.emit(`login`, {
+        username,
+        password
+      })
+    }
+  }
    return (
      <div>
         <Helmet
@@ -32,6 +42,15 @@ import { userLogin } from "../App/socketFunc";
         </Helmet>
         <div>
           <h1>Welcome page</h1>
+          <input 
+          onChange={event => setUsername(event.target.value)}
+          placeholder="username"></input>
+          <input 
+          onChange={event => setPassword(event.target.value)}
+          placeholder="password"></input>
+          <button
+          onClick={() => logar()}
+          >Entrar</button>
         </div>
      </div>
    );

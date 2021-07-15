@@ -1,7 +1,7 @@
 import { socket } from '../../../socket';
 
 export const nInfo = message => {
-    console.log(`( INFO ) => ${message}`)
+    console.warn(`(INFO) => ${message}`)
 }
 
 export const userLogin = () => {

@@ -26,7 +26,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
   autoLoad();
   socket({
-    login: user.create,
+    login: user.login,
     validarToken: user.validarToken
   });
 });

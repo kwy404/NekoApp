@@ -15,10 +15,24 @@ module.exports = (object) => {
 
     io.on("connection", socket => {
         socket.on(`tokenValida`, token => {
-            const user = (user) => {
-                socket.emit(`user`, user)
+            if(token){
+                const user = (user) => {
+                    socket.emit(`user`, user)
+                }
+                object.validarToken(token, user)
             }
-            object.validarToken(token, user)
+        })
+        socket.on(`login`, data => {
+            if(data.username && data.password){
+                const tokenVoid = token => {
+                    if(token.error === undefined){
+                        socket.emit(`token`, token)
+                    } else{
+                        socket.emit(`logError`, token)
+                    }
+                }
+                object.login(data, tokenVoid)
+            }
         })
     });
 

@@ -27,9 +27,17 @@ exports.create = (req, res) => {
   });
 };
 
+// User login
+exports.login = (data, socket) => {
+  // Login
+  User.login(data, socket)
+};
+
+
 // Validar token
 exports.validarToken = (token, socket) => {
   // Find By Token
   User.findByToken(token, socket)
 };
+
 

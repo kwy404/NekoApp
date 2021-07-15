@@ -22,7 +22,8 @@
     "express": "^4.17.1",
     "mysql": "^2.17.1",
     "mysql-import": "^5.0.21",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "sha1": "^1.1.1"
   },
   "devDependencies": {}
 }

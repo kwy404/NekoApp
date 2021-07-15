@@ -17,10 +17,20 @@ import GlobalStyle from '../../global-styles';
 import { HomePage } from '../Home';
 import { Dashboard } from '../Dashboard';
 
+import { socket } from '../../socket';
+import { userLogin } from "../App/socketFunc"
+
 import 'antd/dist/antd.css';
 
+
 export default function App() {
-  
+  const socketOn = () => {
+    socket.on('token', token => {
+      window.localStorage.setItem(`token`, token)
+      userLogin()
+    })
+  }
+  socketOn()
   return (
     <div>
       <Helmet

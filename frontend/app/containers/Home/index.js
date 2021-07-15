@@ -34,7 +34,10 @@ userLogin()
     socket.on('user', user => {
       setUser(user)
       setLogged(true)
-      nInfo(`Logado como ${user.username}`)
+      nInfo(`Logged with ${user.username}`)
+    })
+    socket.on(`logError`, data => {
+      console.log(data)
     })
   }
   socketOn()

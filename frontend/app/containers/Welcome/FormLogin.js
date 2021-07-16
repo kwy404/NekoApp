@@ -6,6 +6,9 @@ import {
   Wrapper,
   MainRegister,
 } from "./style";
+
+
+import { Helmet } from 'react-helmet';
 import React, { Component, useState } from "react";
 import { userLogin } from "../App/socketFunc";
 
@@ -36,6 +39,10 @@ export function FormLogin(props) {
   }
   return (
     <div>
+      <Helmet
+        defaultTitle={`NekoApp - Login`}
+        >
+      </Helmet>
       <MainLogin>
         <h3 className="title marginBottom8">Boas-vindas de volta!</h3>
         <div className="colorHeaderSecondary">

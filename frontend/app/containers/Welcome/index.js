@@ -49,9 +49,8 @@ export function Welcome() {
    return (
      <div>
         <Helmet
-        defaultTitle={`NekoApp - Início`}
+        defaultTitle={`NekoApp - Login`}
         >
-        <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <div>
         <Background/>

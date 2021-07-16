@@ -9,6 +9,8 @@ import {
 import React, { Component, useState } from "react";
 import { userLogin } from "../App/socketFunc";
 
+import { Helmet } from 'react-helmet';
+
 export function FormRegister(props) {
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
@@ -36,6 +38,10 @@ export function FormRegister(props) {
   }
   return (
     <div>
+      <Helmet
+        defaultTitle={`NekoApp - Criando uma conta`}
+        >
+      </Helmet>
       <MainRegister>
         <h3 className="title marginBottom8 centerText">Criar uma conta!</h3>
         <div className={`block-e marginTop20 ${(

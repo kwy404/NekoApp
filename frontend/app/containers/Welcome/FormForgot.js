@@ -10,6 +10,8 @@ import {
 import React, { Component, useState } from "react";
 import { userLogin } from "../App/socketFunc";
 
+import { Helmet } from 'react-helmet';
+
 export function FormForgot(props) {
   const [email, setEmail] = useState(``);
   const [errorE, setErrorE] = useState(false);
@@ -25,6 +27,10 @@ export function FormForgot(props) {
   }
   return (
     <div>
+      <Helmet
+        defaultTitle={`NekoApp - Esqueci a senha`}
+        >
+      </Helmet>
       <FormForgotPassword>
         <h3 className="title marginBottom8">Esqueceu a senha?</h3>
         <div className={`block-e marginTop20 ${(

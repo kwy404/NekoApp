@@ -6,8 +6,10 @@ export const canvasAnima = () => {
     
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
     const time = setInterval(() => {
       if(document.querySelector(`#canvasB`) !== null){
+        document.querySelector(`#canvasB`).innerHTML = ``
         document.querySelector(`#canvasB`).appendChild(canvas);
         clearInterval(time)
       }

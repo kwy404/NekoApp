@@ -30,7 +30,7 @@ import { FormForgot } from "./FormForgot";
 
 import { canvasAnima } from "./canvas";
 
-export function Welcome() {
+export function Welcome(props) {
   const [step, setStep] = useState(0);
   const logar = () => {
     if(username && password){
@@ -62,12 +62,15 @@ export function Welcome() {
             <div>
                 <CenteringWrapper>
                   { step == 0 &&
-                    <FormLogin 
+                    <FormLogin
+                    estouLogado={() => props.estouLogado}
                     forgotFunc={() => setStep(2)}
                     voidFunc={() => setStep(1)}/>
                   }
                   { step == 1 &&
-                    <FormRegister voidFunc={() => setStep(0)}/>
+                    <FormRegister 
+                    estouLogado={() => props.estouLogado}
+                    voidFunc={() => setStep(0)}/>
                   }
                   { 
                   step == 2 &&

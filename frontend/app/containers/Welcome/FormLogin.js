@@ -52,6 +52,11 @@ export function FormLogin(props) {
     }
     if(!error){
       //Axios post
+      
+      //Simular logado
+      props.estouLogado()()({
+        username: `kaway`
+      })
     }
     e.preventDefault()
   }

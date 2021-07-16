@@ -40,6 +40,10 @@ userLogin()
       console.log(data)
     })
   }
+  const estouLogado = usuario => {
+    setLogged(true)
+    setUser(usuario)
+  }
   socketOn()
    return (
      <div>
@@ -50,7 +54,7 @@ userLogin()
         </Helmet>
         <div>
         { logged ? <Dashboard user={user}/>
-        : <Welcome/>
+        : <Welcome estouLogado={() => estouLogado}/>
         }
         </div>
      </div>

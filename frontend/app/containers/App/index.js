@@ -16,6 +16,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import GlobalStyle from '../../global-styles';
 import { HomePage } from '../Home';
 import { Dashboard } from '../Dashboard';
+import { LandingPage } from '../LandingPage';
 
 import { socket } from '../../socket';
 import { userLogin } from "../App/socketFunc"
@@ -39,9 +40,8 @@ export default function App() {
         <meta name="description" content="" />
       </Helmet>
       <Switch>
-        <Route exact path="/" 
-        component={HomePage}
-        />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/app" component={HomePage} />
         <Route path="" 
         component={NotFoundPage} />
       </Switch>

@@ -50,8 +50,8 @@ export function FormLogin(props) {
       password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
       error = true
     }
-    if(error){
-      return
+    if(!error){
+      //Axios post
     }
     e.preventDefault()
   }

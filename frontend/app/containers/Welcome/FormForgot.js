@@ -28,7 +28,6 @@ export function FormForgot(props) {
   const submitForm = (e) => {
     if(email.trim().length == 0){
       email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
-      return
     }
     e.preventDefault()
   }

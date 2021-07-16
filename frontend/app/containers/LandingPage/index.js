@@ -38,10 +38,9 @@
         className="hero">
         <header className="main-header container">
             <nav className="main-nav">
-                <a href="index.html" className="logo">
+                <a className="logo">
                     <img src="logo.svg" alt="logo"/>
                 </a>
-
                 <ul className="nav-list">
                     <li className="nav-item">
                         <a href="#" className="nav-link">Why NekoApp</a>
@@ -185,11 +184,6 @@
             </div>
 
             <div className="divider"></div>
-        </div>
-        <div className="row container remove-grid">
-            <a href="index.html" className="logo">
-                <img src="logo.svg" alt="logo"/>
-            </a>
         </div>
       </footer>
         </div>

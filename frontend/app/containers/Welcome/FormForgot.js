@@ -73,7 +73,7 @@ export function FormForgot(props) {
         <div 
         onClick={() => props.voidFunc()}
         className="link">Lembrei a senha!</div>
-        <button className="marginBottom8 btnBlue block-e">Entrar</button>
+        <button className="marginBottom8 btnBlue block-e">OK</button>
       </FormForgotPassword>
     </div>
   );

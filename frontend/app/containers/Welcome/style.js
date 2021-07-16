@@ -251,7 +251,7 @@ export const Wrapper = styled.div`
       background: #36393f;
       padding: 32px;
       left: 0px;
-      transform: scale(1.1);
+      transform: scale(1.2);
       position: absolute;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -282,13 +282,13 @@ export const Wrapper = styled.div`
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       z-index: 4;
-      margin-top: 25px;
+      margin-top: 35px;
       @keyframes outScaleTwo{
         0%{
             transform: scale(0.9) translateX(-20%);
         }
         100%{
-            transform: scale(1.1)  translateX(0%);
+            transform: scale(1.2)  translateX(0%);
         }
       }
   `

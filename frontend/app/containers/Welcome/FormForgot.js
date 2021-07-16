@@ -34,7 +34,7 @@ export function FormForgot(props) {
             </div>
           </div>
         </div>
-        <button className="marginBottom8 btnBlue block-e">Entrar</button>
+        <button className="marginBottom8 btnBlue block-e">Recuperar</button>
         <span>
           <div className="link" onClick={() => props.voidFunc()}>Lembrei a senha!</div>
         </span>

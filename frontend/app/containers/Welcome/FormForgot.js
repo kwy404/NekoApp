@@ -38,7 +38,7 @@ export function FormForgot(props) {
         >
       </Helmet>
       <AuthBox
-      onSubmit={(e) => submitForm()}>
+      onSubmit={(e) => submitForm(e)}>
         <FormForgotPassword
         style={{ 
           marginTop: `-8em`

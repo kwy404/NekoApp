@@ -61,7 +61,7 @@ export function FormRegister(props) {
         >
       </Helmet>
       <AuthBox
-      onSubmit={(e) => submitForm()}>
+      onSubmit={(e) => submitForm(e)}>
         <MainRegister>
           <h3 className="title marginBottom8 centerText">Criar uma conta!</h3>
           <div className={`block-e marginTop20 ${(

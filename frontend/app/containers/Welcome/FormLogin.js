@@ -62,7 +62,7 @@ export function FormLogin(props) {
         >
       </Helmet>
       <AuthBox
-      onSubmit={(e) => submitForm()}>
+      onSubmit={(e) => submitForm(e)}>
         <MainLogin >
           <h3 className="title marginBottom8">Boas-vindas de volta!</h3>
           <div className="colorHeaderSecondary">

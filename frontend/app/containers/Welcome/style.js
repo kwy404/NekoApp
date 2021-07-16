@@ -251,7 +251,7 @@ export const Wrapper = styled.div`
       background: #36393f;
       padding: 32px;
       left: 0px;
-      transform: scale(1.2);
+      transform: scale(1.26);
       position: absolute;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -275,20 +275,20 @@ export const Wrapper = styled.div`
         line-height: 30px;
       }
       animation: outScaleTwo 0.4s;
-      height: 330px;
+      height: 310px;
       -webkit-box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
       box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
       border-radius: 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       z-index: 4;
-      margin-top: 35px;
+      margin-top: 50px;
       @keyframes outScaleTwo{
         0%{
             transform: scale(0.9) translateX(-20%);
         }
         100%{
-            transform: scale(1.2)  translateX(0%);
+            transform: scale(1.26)  translateX(0%);
         }
       }
   `

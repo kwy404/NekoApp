@@ -57,7 +57,9 @@ export function FormLogin(props) {
             </div>
           </div>
         </div>
-        <div className="link">Esqueceu sua senha?</div>
+        <div 
+        onClick={() => props.forgotFunc()}
+        className="link">Esqueceu sua senha?</div>
         <button className="marginBottom8 btnBlue block-e">Entrar</button>
         <span>
           Precisando de uma conta?

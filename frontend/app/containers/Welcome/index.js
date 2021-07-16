@@ -27,12 +27,15 @@ import { Background } from "./Background";
 import { FormRegister } from "./FormRegister";
 
 import { FormLogin } from "./FormLogin";
+
+import { FormForgot } from "./FormForgot";
   
 
 export function Welcome() {
   const [username, setUsername] = useState(``);
   const [password, setPassword] = useState(``);
   const [step, setStep] = useState(0);
+  const [forgot, setForgot] = useState(0);
   const logar = () => {
     if(username && password){
       socket.emit(`login`, {
@@ -55,8 +58,14 @@ export function Welcome() {
             <div>
               <AuthBox>
                 <CenteringWrapper>
+                  { 
+                  forgot == 1 &&
+                  <FormForgot voidFunc={() => setForgot(0)}/>
+                  }
                   { step == 0 &&
-                    <FormLogin voidFunc={() => setStep(1)}/>
+                    <FormLogin 
+                    forgotFunc={() => setForgot(1)}
+                    voidFunc={() => setStep(1)}/>
                   }
                   { step == 1 &&
                     <FormRegister voidFunc={() => setStep(0)}/>

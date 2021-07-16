@@ -242,3 +242,53 @@ export const Wrapper = styled.div`
     width: 100%;
     height: 100%;
   `
+
+  export const FormForgotPassword = styled.div`
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      width: 100%;
+      background: #36393f;
+      padding: 32px;
+      left: 0px;
+      transform: scale(1.1);
+      position: absolute;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: start;
+      .focusInput{
+        border-color: #04a6e6;
+      }
+      .centerText{
+        text-align: center;
+        position: relative;
+        font-weight: 600;
+        width: 100%;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      animation: outScaleTwo 0.4s;
+      height: 330px;
+      -webkit-box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
+      box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
+      border-radius: 5px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      z-index: 4;
+      margin-top: 25px;
+      @keyframes outScaleTwo{
+        0%{
+            transform: scale(0.9) translateX(-20%);
+        }
+        100%{
+            transform: scale(1.1)  translateX(0%);
+        }
+      }
+  `

@@ -25,13 +25,21 @@ export function FormForgot(props) {
     email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
     setEmail(e)
   }
+  const submitForm = (e) => {
+    if(email.trim().length == 0){
+      email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
+      return
+    }
+    e.preventDefault()
+  }
   return (
     <div>
       <Helmet
         defaultTitle={`NekoApp - Esqueci a senha`}
         >
       </Helmet>
-      <AuthBox>
+      <AuthBox
+      onSubmit={(e) => submitForm()}>
         <FormForgotPassword
         style={{ 
           marginTop: `-8em`

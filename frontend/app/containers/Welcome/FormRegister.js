@@ -36,13 +36,32 @@ export function FormRegister(props) {
     password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
     setPassword(e)
   }
+  const submitForm = (e) => {
+    let error = false
+    if(email.trim().length == 0){
+      error = true
+      email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
+      if(password.trim().length == 0){
+        password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
+        error = true
+      }
+    } else if(password.trim().length == 0){
+      password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
+      error = true
+    }
+    if(error){
+      return
+    }
+    e.preventDefault()
+  }
   return (
     <div>
       <Helmet
         defaultTitle={`NekoApp - Criando uma conta`}
         >
       </Helmet>
-      <AuthBox>
+      <AuthBox
+      onSubmit={(e) => submitForm()}>
         <MainRegister>
           <h3 className="title marginBottom8 centerText">Criar uma conta!</h3>
           <div className={`block-e marginTop20 ${(

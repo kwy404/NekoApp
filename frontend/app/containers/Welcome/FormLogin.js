@@ -37,14 +37,33 @@ export function FormLogin(props) {
     password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
     setPassword(e)
   }
+  const submitForm = (e) => {
+    let error = false
+    if(email.trim().length == 0){
+      error = true
+      email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
+      if(password.trim().length == 0){
+        password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
+        error = true
+      }
+    } else if(password.trim().length == 0){
+      password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
+      error = true
+    }
+    if(error){
+      return
+    }
+    e.preventDefault()
+  }
   return (
     <div>
       <Helmet
         defaultTitle={`NekoApp - Login`}
         >
       </Helmet>
-      <AuthBox>
-        <MainLogin>
+      <AuthBox
+      onSubmit={(e) => submitForm()}>
+        <MainLogin >
           <h3 className="title marginBottom8">Boas-vindas de volta!</h3>
           <div className="colorHeaderSecondary">
             Estamos muito animados em te ver novamente!

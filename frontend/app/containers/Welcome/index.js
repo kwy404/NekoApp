@@ -40,10 +40,6 @@ export function Welcome() {
       })
     }
   }
-   const submitForm = (e) => {
-    console.log(`forgot:`, forgot, `step:`, step)
-    e.preventDefault()
-   }
    canvasAnima()
    return (
      <div style={{

@@ -25,7 +25,6 @@
         <Helmet
         defaultTitle={`NekoApp - Dashboard`}
         >
-        <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <h1>Logged with {props.user.username}</h1>
      </div>

@@ -19,8 +19,6 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
   
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
-  
-import { userLogin } from "../App/socketFunc";
 
 import { Background } from "./Background";
 
@@ -29,7 +27,8 @@ import { FormRegister } from "./FormRegister";
 import { FormLogin } from "./FormLogin";
 
 import { FormForgot } from "./FormForgot";
-  
+
+import { canvasAnima } from "./canvas";
 
 export function Welcome() {
   const [step, setStep] = useState(0);
@@ -46,14 +45,23 @@ export function Welcome() {
     console.log(`forgot:`, forgot, `step:`, step)
     e.preventDefault()
    }
+   canvasAnima()
    return (
-     <div>
+     <div style={{
+       position: `fixed`,
+       width: `100%`,
+       height: `100%`,
+       top: `0px`,
+       left: `0px`,
+       background: `#151515`
+     }}>
         <Helmet
         defaultTitle={`NekoApp - Login`}
         >
         </Helmet>
         <div>
         <Background/>
+        <div id="canvasB"></div>
         <Wrapper>
           <div>
             <div>

@@ -24,6 +24,8 @@ export const Wrapper = styled.div`
     user-select: none;
     overflow: hidden;
     background: #36393f;
+    
+    z-index: 50;
     color: #72767d;
     width: 538px;
     padding: 32px;

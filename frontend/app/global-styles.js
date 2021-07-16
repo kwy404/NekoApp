@@ -17,6 +17,13 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
+  canvas{
+    position: fixed;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+  }
+
   #app {
     background-color: #fafafa;
     min-height: 100%;

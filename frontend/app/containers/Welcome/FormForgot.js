@@ -11,6 +11,7 @@ import React, { Component, useState } from "react";
 import { userLogin } from "../App/socketFunc";
 
 import { Helmet } from 'react-helmet';
+import { loop } from './canvas';
 
 export function FormForgot(props) {
   const [email, setEmail] = useState(``);
@@ -25,6 +26,7 @@ export function FormForgot(props) {
     email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
     setEmail(e)
   }
+  loop();
   return (
     <div>
       <Helmet

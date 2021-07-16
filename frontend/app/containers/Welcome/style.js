@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
     }
   `
 
-  export const AuthBox = styled.div`
+  export const AuthBox = styled.form`
     user-select: none;
     overflow: hidden;
     background: #36393f;
@@ -59,6 +59,7 @@ export const Wrapper = styled.div`
     .colorStandard{
       color: #8e9297;
       user-select: none;
+      display: flex;
     }
     .defaultMarginh3{
       margin-bottom: 8px;
@@ -116,6 +117,29 @@ export const Wrapper = styled.div`
       font-size: 15px;
       margin: 20px 0px 8px;
       cursor: pointer;
+    }
+    .errorMessage{
+      font-size: 12px;
+      font-weight: 500;
+      font-style: italic;
+      text-transform: none;
+      display: flex;
+      margin-top: 4px;
+    }
+    .error{
+      color: #e24145 !important;
+    }
+    .errorE #input-email{
+      border-color: #e24145 !important;
+    }
+    .errorE #input-senha{
+      border-color: #e24145 !important;
+    }
+    .errorSeparator{
+      padding-left: 4px;
+      padding-right: 4px;
+      color: #e24145 !important;
+      margin-top: 3px;
     }
     .link:hover{
       text-decoration: underline;

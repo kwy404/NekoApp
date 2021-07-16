@@ -32,8 +32,6 @@ import { FormForgot } from "./FormForgot";
   
 
 export function Welcome() {
-  const [username, setUsername] = useState(``);
-  const [password, setPassword] = useState(``);
   const [step, setStep] = useState(0);
   const [forgot, setForgot] = useState(0);
   const logar = () => {
@@ -44,6 +42,10 @@ export function Welcome() {
       })
     }
   }
+   const submitForm = (e) => {
+    console.log(`forgot:`, forgot, `step:`, step)
+    e.preventDefault()
+   }
    return (
      <div>
         <Helmet
@@ -56,7 +58,7 @@ export function Welcome() {
         <Wrapper>
           <div>
             <div>
-              <AuthBox>
+              <AuthBox onSubmit={(e) => submitForm(e)}>
                 <CenteringWrapper>
                   { 
                   forgot == 1 &&

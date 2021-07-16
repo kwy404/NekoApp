@@ -32,7 +32,6 @@ import { canvasAnima } from "./canvas";
 
 export function Welcome() {
   const [step, setStep] = useState(0);
-  const [forgot, setForgot] = useState(0);
   const logar = () => {
     if(username && password){
       socket.emit(`login`, {
@@ -65,22 +64,21 @@ export function Welcome() {
         <Wrapper>
           <div>
             <div>
-              <AuthBox onSubmit={(e) => submitForm(e)}>
                 <CenteringWrapper>
-                  { 
-                  forgot == 1 &&
-                  <FormForgot voidFunc={() => setForgot(0)}/>
-                  }
                   { step == 0 &&
                     <FormLogin 
-                    forgotFunc={() => setForgot(1)}
+                    forgotFunc={() => setStep(2)}
                     voidFunc={() => setStep(1)}/>
                   }
                   { step == 1 &&
                     <FormRegister voidFunc={() => setStep(0)}/>
                   }
+                  { 
+                  step == 2 &&
+                  <FormForgot
+                  voidFunc={() => setStep(0)}/>
+                  }
                 </CenteringWrapper>
-              </AuthBox>
             </div>
           </div>
         </Wrapper>

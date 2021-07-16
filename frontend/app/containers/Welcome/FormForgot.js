@@ -31,50 +31,56 @@ export function FormForgot(props) {
         defaultTitle={`NekoApp - Esqueci a senha`}
         >
       </Helmet>
-      <FormForgotPassword>
-        <h3 className="title marginBottom8">Esqueceu a senha?</h3>
-        <div className={`block-e marginTop20 ${(
-          errorE ? 'errorE' : '')}
-          `}>
-          <h5 className={`colorStandard defaultMarginh3 ${(
-          errorE ? `error` : ``)}`}>
-            E-mail 
-            { errorE &&
-            <span style={{
-              margin: `0px`
-            }}>
-              <span className="errorSeparator">-</span>
-              <span className="errorMessage error">
-                  Este campo é obrigatório
+      <AuthBox>
+        <FormForgotPassword
+        style={{ 
+          marginTop: `-8em`
+        }}
+        >
+          <h3 className="title marginBottom8">Esqueceu a senha?</h3>
+          <div className={`block-e marginTop20 ${(
+            errorE ? 'errorE' : '')}
+            `}>
+            <h5 className={`colorStandard defaultMarginh3 ${(
+            errorE ? `error` : ``)}`}>
+              E-mail 
+              { errorE &&
+              <span style={{
+                margin: `0px`
+              }}>
+                <span className="errorSeparator">-</span>
+                <span className="errorMessage error">
+                    Este campo é obrigatório
+                </span>
               </span>
-            </span>
-            }
-            </h5>
-          <div id="input-email" className="input">
-            <div className="inputWrapper">
-              <input
-                onFocus={() =>
-                  focusEmail()
-                }
-                onBlur={() =>
-                  document
-                    .querySelector(`#input-email`)
-                    .setAttribute(`class`, `input`)
-                }
-                value={email}
-                onChange={event => {
-                  errorEmail(event.target.value)
-                }}
-                className="inputDefault input-c"
-              />
+              }
+              </h5>
+            <div id="input-email" className="input">
+              <div className="inputWrapper">
+                <input
+                  onFocus={() =>
+                    focusEmail()
+                  }
+                  onBlur={() =>
+                    document
+                      .querySelector(`#input-email`)
+                      .setAttribute(`class`, `input`)
+                  }
+                  value={email}
+                  onChange={event => {
+                    errorEmail(event.target.value)
+                  }}
+                  className="inputDefault input-c"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div 
-        onClick={() => props.voidFunc()}
-        className="link">Lembrei a senha!</div>
-        <button className="marginBottom8 btnBlue block-e">OK</button>
-      </FormForgotPassword>
+          <div 
+          onClick={() => props.voidFunc()}
+          className="link">Lembrei a senha!</div>
+          <button className="marginBottom8 btnBlue block-e">OK</button>
+        </FormForgotPassword>
+      </AuthBox>
     </div>
   );
 }

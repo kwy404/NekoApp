@@ -12,28 +12,26 @@ export const canvasAnima = () => {
         clearInterval(time)
       }
     }, 100);
-    
-    
     class Blob {
       constructor() {
         this.wobbleIncrement = 0;
         // use this to change the size of the blob
-        this.radius = 500;
+        this.radius = 600;
         // think of this as detail level
         // number of conections in the `bezierSkin`
-        this.segments = 12;
+        this.segments = 31;
         this.step = HALF_PI / this.segments;
         this.anchors = [];
         this.radii = [];
         this.thetaOff = [];
     
-        const bumpRadius = 100;
+        const bumpRadius = 140;
         const halfBumpRadius = bumpRadius / 2;
     
         for (let i = 0; i < this.segments + 2; i++) {
           this.anchors.push(0, 0);
           this.radii.push(Math.random() * bumpRadius - halfBumpRadius);
-          this.thetaOff.push(Math.random() * 2 * Math.PI);
+          this.thetaOff.push(Math.random() * 10 * Math.PI);
         }
     
         this.theta = 0;

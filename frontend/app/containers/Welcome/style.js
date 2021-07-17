@@ -318,7 +318,7 @@ export const Wrapper = styled.div`
         font-size: 24px;
         line-height: 30px;
       }
-      height: 310px;
+      height: auto;
       border-radius: 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;

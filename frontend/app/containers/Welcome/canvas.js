@@ -1,4 +1,5 @@
 export const canvasAnima = () => {
+    
     const TWO_PI = Math.PI * 2;
     const HALF_PI = Math.PI / 2;
     const canvas = document.createElement("canvas");

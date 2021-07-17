@@ -21,10 +21,31 @@ export const Wrapper = styled.div`
   `
 
   export const AuthBox = styled.form`
+    transition: 0.4s ease;
+    @media screen and (max-height: 817px){
+      top: -4em;
+    }
+    @media screen and (max-height: 700px){
+      top: -6em;
+    }
+    @media screen and (max-height: 649px){
+      top: -8em;
+    }
+    @media screen and (max-height: 600px){
+      top: -10em;
+    }
+    @media screen and (max-height: 567px){
+      top: -12em;
+    }
+    @media screen and (max-width: 597px){
+      width: 100vw;
+      height: 100vh;
+      top: -12vh;
+    }
+    position: relative;
     user-select: none;
     overflow: hidden;
     background: #36393f;
-    
     z-index: 50;
     color: #72767d;
     width: 538px;
@@ -264,6 +285,9 @@ export const Wrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    @media screen and (max-width: 597px){
+      display: none;
+    }
   `
 
   export const FormForgotPassword = styled.div`

@@ -41,7 +41,8 @@ export function FormForgot(props) {
       onSubmit={(e) => submitForm(e)}>
         <FormForgotPassword
         style={{ 
-          marginTop: `-8em`
+          height: `323px`,
+          position: `relative`
         }}
         >
           <h3 className="title marginBottom8">Esqueceu a senha?</h3>

@@ -295,8 +295,6 @@ export const Wrapper = styled.div`
       display: -ms-flexbox;
       display: flex;
       width: 100%;
-      background: #36393f;
-      padding: 32px;
       left: 0px;
       position: absolute;
       -webkit-box-orient: vertical;
@@ -321,8 +319,6 @@ export const Wrapper = styled.div`
         line-height: 30px;
       }
       height: 310px;
-      -webkit-box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
-      box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
       border-radius: 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;

@@ -23,6 +23,13 @@ class Api::V1::UsersController < ApplicationController
     @user.save
   end
 
+  def validationToken
+    @user = User.find_by(token: params[:token])
+    if @user
+      render json: @user, status: :ok
+    else
+      render json: { error: 'Token inválido' }, status: :unprocessable_entity
+
   def login
     password_encrypted = Digest::SHA2.hexdigest params[:password]
     @user = User.find_by({ "email": params[:email], "password": password_encrypted })
@@ -54,7 +61,8 @@ class Api::V1::UsersController < ApplicationController
                         avatar: "",
                         cover: "",
                         friends: [],
-                        badges: []
+                        badges: [],
+                        notifications: []
                         )
 
     if @user.save

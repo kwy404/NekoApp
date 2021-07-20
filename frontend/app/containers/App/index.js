@@ -7,6 +7,7 @@
  */
 
 import React, { Component, useState } from 'react';
+
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
@@ -25,13 +26,7 @@ import 'antd/dist/antd.css';
 
 
 export default function App() {
-  const socketOn = () => {
-    socket.on('token', token => {
-      window.localStorage.setItem(`token`, token)
-      userLogin()
-    })
-  }
-  socketOn()
+  
   return (
     <div>
       <Helmet

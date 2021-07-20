@@ -1,0 +1,15 @@
+---
+  pt-br:
+    api:
+      v1:
+        users:
+          login:
+            invalid_data:
+              message: "E-mail ou senha Inválidos."
+          register:
+            email_already_exist:
+              message: "E-mail já cadastrado."
+            username_already_exist:
+              message: "Nome de usuário já cadastrado."
+            error:
+              message: "Usuário não criado."

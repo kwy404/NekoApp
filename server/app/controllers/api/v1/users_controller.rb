@@ -1,12 +1,17 @@
 require 'digest'
 
 class Api::V1::UsersController < ApplicationController
+  before_action :allowCors
   skip_before_action :verify_authenticity_token
 
   def update(id)
     @user = User.find(id)
     @user.token = generate_token
     @user.save
+    
+    # Remove password from params
+    @user.password = nil
+    @user.password_confirmation = nil
   end
 
   def reset_password
@@ -18,6 +23,8 @@ class Api::V1::UsersController < ApplicationController
 
   def validation_token
     @user = User.find_by(token: params[:token])
+    @user.password = nil
+    @user.password_confirmation = nil
     if @user
       render json: @user, status: :ok
     else
@@ -28,7 +35,6 @@ class Api::V1::UsersController < ApplicationController
   def login
     password_encrypted = Digest::SHA2.hexdigest params[:password]
     @user = User.find_by({ "email": params[:email], "password": password_encrypted })
-    
     if @user
       update(@user._id)
       render json: @user, status: :ok

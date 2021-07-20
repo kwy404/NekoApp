@@ -18,11 +18,16 @@
  
  const { SubMenu } = Menu;
  const { Header, Content, Sider } = Layout;
+ 
 
  
 import { userLogin, nInfo } from "../App/socketFunc"
 import { Dashboard } from '../Dashboard';
 import { Welcome } from '../Welcome';
+import axios from 'axios'
+
+const config = require('../../socket/config');
+
 
 //Validar login
 userLogin() 
@@ -30,6 +35,7 @@ userLogin()
  export function HomePage() {
   const [user, setUser] = useState({});
   const [logged, setLogged] = useState(false);
+  const [sendApi, setSendApi] = useState(false);
   const socketOn = () => {
     socket.on('user', user => {
       setUser(user)
@@ -44,7 +50,17 @@ userLogin()
     setLogged(true)
     setUser(usuario)
   }
-  socketOn()
+  const validarToken = async () => {
+    if(!sendApi){
+      setSendApi(true)
+      const user = await axios.post(`${config.configSite.api}/api/v1/validation_token?token=${window.localStorage.getItem('token')}`)
+      if(user.data.username){
+        estouLogado(user.data)
+      }
+    }
+    
+  }
+  validarToken()
    return (
      <div>
         <Helmet

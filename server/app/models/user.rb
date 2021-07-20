@@ -46,4 +46,5 @@ class User
   field :cover, type: String, default: ''
   field :friends, type: Array, default: []
   field :badges, type: Array, default: []
+  field :notifications, type: Array, default: []
 end

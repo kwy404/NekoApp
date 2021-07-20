@@ -53,7 +53,7 @@ userLogin()
   const validarToken = async () => {
     if(!sendApi){
       setSendApi(true)
-      const user = await axios.post(`${config.configSite.api}/api/v1/validationToken?token=${window.localStorage.getItem('token')}`)
+      const user = await axios.post(`${config.configSite.api}/api/v1/validation_token?token=${window.localStorage.getItem('token')}`)
       if(user.data.username){
         estouLogado(user.data)
       }

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'register', action: :create, controller: :users
       post 'login', action: :login, controller: :users
-      post 'validationToken', action: :validationToken, controller: :users
+      post 'validation_token', action: :validation_token, controller: :users
     end
   end
 end

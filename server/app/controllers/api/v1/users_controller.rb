@@ -1,6 +1,7 @@
 require 'digest'
 
 class Api::V1::UsersController < ApplicationController
+  before_action :allowCors
   skip_before_action :verify_authenticity_token
 
   def generate_token
@@ -11,8 +12,12 @@ class Api::V1::UsersController < ApplicationController
 
   def update(id)
     @user = User.find(id)
-    @user.token = generateToken()
+    @user.token = generate_token()
     @user.save
+    
+    # Remove password from params
+    @user.password = nil
+    @user.password_confirmation = nil
   end
 
   # Reset password by id
@@ -25,37 +30,40 @@ class Api::V1::UsersController < ApplicationController
 
   def validationToken
     @user = User.find_by(token: params[:token])
+    @user.password = nil
+    @user.password_confirmation = nil
     if @user
       render json: @user, status: :ok
     else
       render json: { error: 'Token inválido' }, status: :unprocessable_entity
+    end
+  end
 
   def login
     password_encrypted = Digest::SHA2.hexdigest params[:password]
     @user = User.find_by({ "email": params[:email], "password": password_encrypted })
-    
     if @user
       update(@user._id)
       render json: @user, status: :ok
     else 
-      render json: {status: "Error", message: "E-mail ou senha Inválidos."}, status: :unauthorized
+      render json: {status: "Error", message: "E-mail ou senha Inválidos."}, status: :ok
     end
   end
 
   def create
     if email_already_created()
-      render json: {status: "Error", message: "E-mail já cadastrado."}, status: :unauthorized
+      render json: {status: "Error", message: "E-mail já cadastrado."}, status: :ok
       return
     end
     if username_already_created()
-      render json: {message: "Nome de usuário já cadastrado"}, status: :unprocessable_entity
+      render json: {message: "Nome de usuário já cadastrado"}, status: :ok
       return
     end
     password_encrypted = Digest::SHA2.hexdigest params[:password]
     @user = User.create(username: params[:username], 
                         email: params[:email], 
                         password: password_encrypted,
-                        token: generateToken(),
+                        token: generate_token(),
                         admin: 'False',
                         beta: :beta,
                         avatar: "",

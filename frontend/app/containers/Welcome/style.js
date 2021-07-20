@@ -155,6 +155,9 @@ export const Wrapper = styled.div`
     .errorE #input-email{
       border-color: #e24145 !important;
     }
+    .errorE #input-user{
+      border-color: #e24145 !important;
+    }
     .errorE #input-senha{
       border-color: #e24145 !important;
     }

@@ -22,25 +22,30 @@ export function FormLogin(props) {
   const [password, setPassword] = useState(``);
   const [errorE, setErrorE] = useState(false);
   const [errorP, setErrorP] = useState(false);
+  const [messageError, setMessageError] = useState(``)
   const focusEmail = () => {
     email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
     document
     .querySelector(`#input-email`)
     .setAttribute(`class`, `input focusInput`)
+    setMessageError(null)
   }
   const focusPassword = () => {
     password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
     document
     .querySelector(`#input-senha`)
     .setAttribute(`class`, `input focusInput`)
+    setMessageError(null)
   }
   const errorEmail = (e) => {
     email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
     setEmail(e)
+    setMessageError(null)
   }
   const errorPassword = (e) => {
     password.trim().length == 0 ? setErrorP(true) : setErrorP(false)
     setPassword(e)
+    setMessageError(null)
   }
   const submitForm = async (e) => {
     let error = false
@@ -62,7 +67,15 @@ export function FormLogin(props) {
         window.localStorage.setItem(`token`, user.data.token )
         console.log(user.data)
         props.estouLogado()()(user.data)
+      } else{
+        if(user.data.message){
+          if(user.data.message){
+            setErrorE(true)
+            setErrorP(true)
+            setMessageError(user.data.message)
+          }
       }
+    }
     }
     e.preventDefault()
   }
@@ -91,7 +104,7 @@ export function FormLogin(props) {
               }}>
                 <span className="errorSeparator">-</span>
                 <span className="errorMessage error">
-                    Este campo é obrigatório
+                {messageError || `Este campo é obrigatório`}
                 </span>
               </span>
               }
@@ -128,7 +141,7 @@ export function FormLogin(props) {
             }}>
               <span className="errorSeparator">-</span>
               <span className="errorMessage error">
-                  Este campo é obrigatório
+                  {messageError || `Este campo é obrigatório`}
               </span>
             </span>
             }

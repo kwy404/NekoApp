@@ -27,6 +27,9 @@ en:
         subject: "Email Changed"
       password_change:
         subject: "Password Changed"
+    users:
+      login:
+        invalid_data.message: "E-mail or password invalid."
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."

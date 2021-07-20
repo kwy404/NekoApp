@@ -22,20 +22,16 @@
  
  export function Dashboard(props) {
    const [user, setUser] = useState(props.user);
+
    return (
      <div>
         <Helmet
         defaultTitle={`NekoApp - Dashboard`}
         >
         </Helmet>
-        { props.user.username }
-        {/* <LeftPanel>
-
-        </LeftPanel> */}
-        <button 
-        onClick={() => props.logout()}>
-          Logout
-        </button>
+        <div>
+          
+        </div>
      </div>
    );
  }

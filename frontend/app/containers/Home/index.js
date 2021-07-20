@@ -37,9 +37,11 @@ const config = require('../../socket/config');
     setLogged(true)
     setUser(usuario)
   }
+  
   const logout = () => {
     setLogged(false)
     setUser({})
+    window.localStorage.setItem(`token`, null)
   }
 
   const validarToken = async () => {

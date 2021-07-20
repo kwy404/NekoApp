@@ -3,6 +3,9 @@ require 'digest'
 class Api::V1::UsersController < ApplicationController
   before_action :allowCors
   skip_before_action :verify_authenticity_token
+  
+  # Voce eh meu amigo?
+  
 
   def update(id)
     @user = User.find(id)

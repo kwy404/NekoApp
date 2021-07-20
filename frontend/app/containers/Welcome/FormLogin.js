@@ -48,6 +48,7 @@ export function FormLogin(props) {
     setMessageError(null)
   }
   const submitForm = async (e) => {
+    e.preventDefault()
     let error = false
     if(email.trim().length == 0){
       error = true
@@ -77,7 +78,7 @@ export function FormLogin(props) {
       }
     }
     }
-    e.preventDefault()
+    
   }
   return (
     <div>

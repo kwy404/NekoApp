@@ -35,7 +35,15 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  field :name, type: String
+  field :username, type: String
   field :email, type: String
   field :password, type: String
+  field :password_confirmation, type: String
+  field :token, type: String
+  field :admin, type: Boolean, default: false
+  field :beta, type: Boolean, default: true
+  field :avatar, type: String, default: ''
+  field :cover, type: String, default: ''
+  field :friends, type: Array, default: []
+  field :badges, type: Array, default: []
 end

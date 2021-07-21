@@ -45,7 +45,7 @@ export const Wrapper = styled.div`
     position: relative;
     user-select: none;
     overflow: hidden;
-    background: #36393f;
+    background: #303038;
     z-index: 50;
     color: #72767d;
     width: 538px;
@@ -136,7 +136,7 @@ export const Wrapper = styled.div`
       transition: border-color .2s ease-in-out;
     }
     .link{
-      color: #04a6e6;
+      color: #f76fe9;
       font-size: 15px;
       margin: 20px 0px 8px;
       cursor: pointer;
@@ -183,7 +183,7 @@ export const Wrapper = styled.div`
         margin-left: 5px;
     }
     .btnBlue{
-      background-color: #5865f2;
+      background-color: #d128a6;
       color: white;
       font-size: 16px;
       width: 100%;
@@ -217,7 +217,7 @@ export const Wrapper = styled.div`
       cursor: pointer;
     }
     .btnBlue:hover{
-      background-color: #4752c4;
+      background-color: #b62d93;
     }
     animation: toY 0.4s;
     @keyframes toY{

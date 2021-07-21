@@ -28,28 +28,22 @@ import axios from 'axios'
 
 const config = require('../../socket/config');
 
-
-//Validar login
-userLogin() 
-
  export function HomePage() {
   const [user, setUser] = useState({});
   const [logged, setLogged] = useState(false);
   const [sendApi, setSendApi] = useState(false);
-  const socketOn = () => {
-    socket.on('user', user => {
-      setUser(user)
-      setLogged(true)
-      nInfo(`Logged with ${user.username}`)
-    })
-    socket.on(`logError`, data => {
-      console.log(data)
-    })
-  }
+
   const estouLogado = usuario => {
     setLogged(true)
     setUser(usuario)
   }
+  
+  const logout = () => {
+    setLogged(false)
+    setUser({})
+    window.localStorage.setItem(`token`, null)
+  }
+
   const validarToken = async () => {
     if(!sendApi){
       setSendApi(true)
@@ -69,7 +63,9 @@ userLogin()
         <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <div>
-        { logged ? <Dashboard user={user}/>
+        { logged ? <Dashboard 
+        logout={logout}
+        user={user}/>
         : <Welcome estouLogado={() => estouLogado}/>
         }
         </div>

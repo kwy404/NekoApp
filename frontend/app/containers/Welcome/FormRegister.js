@@ -57,6 +57,7 @@ export function FormRegister(props) {
     setUsername(e)
   }
   const submitForm = async (e) => {
+    e.preventDefault()
     let error = false
     if(email.trim().length == 0){
       error = true
@@ -105,7 +106,6 @@ export function FormRegister(props) {
         }
       }
     }
-    e.preventDefault()
   }
   return (
     <div>

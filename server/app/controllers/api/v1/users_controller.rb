@@ -3,6 +3,9 @@ require 'digest'
 class Api::V1::UsersController < ApplicationController
   before_action :allowCors
   skip_before_action :verify_authenticity_token
+  
+  # Voce eh meu amigo?
+  
 
   def update(id)
     @user = User.find(id)
@@ -41,8 +44,9 @@ class Api::V1::UsersController < ApplicationController
     else 
       render json: {
         status: "Error",
-        message: I18n.t("api.v1.users.login.invalid_data.message")
-      }, status: :unauthorized
+        #message: I18n.t("api.v1.users.login.invalid_data.message")
+        message: "E-mail ou senha inválidos."
+      }, status: :ok
     end
   end
 
@@ -103,19 +107,21 @@ class Api::V1::UsersController < ApplicationController
   def email_already_create_response
     render json: {
         status: "Error",
-        message: I18n.t("api.v1.users.register.email_already_exist.message")
-      }, status: :unprocessable_entity
+        #message: I18n.t("api.v1.users.register.email_already_exist.message")
+        message: "E-mail já existe."
+      }, status: :ok
   end
 
   def username_already_create_response
     render json: {
-      message: I18n.t("api,v1.users.register.username_already_exist")
-    }, status: :unprocessable_entity
+      #message: I18n.t("api,v1.users.register.username_already_exist")
+      message: "Nome do usuário já existe"
+    }, status: :ok
   end
 
   def generic_error_message
     render json: {
       message: I18n.t("api.v1.users.register.error")
-    }, status: :unprocessable_entity
+    }, status: :ok
   end
 end

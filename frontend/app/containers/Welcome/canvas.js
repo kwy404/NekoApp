@@ -58,7 +58,7 @@ export const canvasAnima = () => {
         c.save();
         c.translate(-10, -10);
         c.scale(1.5, 2.9);
-        c.fillStyle = "#232529";
+        c.fillStyle = "#25252f";
         c.beginPath();
         c.moveTo(0, 0);
         bezierSkin(this.anchors, false);

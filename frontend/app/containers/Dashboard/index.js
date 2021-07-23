@@ -27,22 +27,30 @@ export class Dashboard extends React.Component {
     super(props);
     this.state = {
       amigosSugeridos: [],
-      notifications: []
+      notifications: this.props.user.notifications || []
     }
   }
   componentDidMount(){
     online()
     const react = this
     socket.on('message', msg => {
-      console.log(msg)
+      //console.log(msg)
     })
     socket.on('friendsSuge', data => {
       react.setState({ amigosSugeridos: data })
     })
     socket.on('notification', data => {
       const old = [...react.state.notifications, data.notificationFriend]
-      console.log(old)
-      react.setState({notifications: old})
+      if(!react.state.notifications.find(e => e.info == data.notificationFriend.info) && data.type === undefined){
+        react.setState({notifications: old})
+      }
+      if(data.type !== undefined){
+        const old = [...react.state.notifications]
+        const found = old.find(e => e.info == data.notificationFriend.info)
+        const index = old.indexOf(found)
+        old.splice(index, 1)
+        react.setState({notifications: old})
+      }
     })
   }
   addFriend(friendId){

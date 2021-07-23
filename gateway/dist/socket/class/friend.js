@@ -11,18 +11,21 @@ class friend {
     }
     async add({db, room, socket, token}){
         const me = await db.collection("users").findOne({token})
+        me.friends === undefined ? me.friends = [] : ''
+        me.notifications === undefined ? me.notifications = [] : ''
         let o_id = new this.ObjectId(this._id);   // id as a string is passed
         const friend = await db.collection("users").findOne({"_id": o_id});
+        friend.friends === undefined ? friend.friends = [] : ''
+        friend.notifications === undefined ? friend.notifications = [] : ''
         //Update me
         if(me){
-            const found = me.friends.find(e => e.info == this.info)
+            const found = me.friends.find(e => e.info == o_id.toString() || e.info == this.myId)
             if(!found){
                 me.friends.push(this)
             } else{
                 const index = me.friends.indexOf(found)
-                me.friends.splice(index, 1)
             }
-            const meAddFriend = await db.collection("users").findOneAndUpdate(
+            await db.collection("users").findOneAndUpdate(
                 { "token" : token },
                 { $set: me }
             )
@@ -37,7 +40,7 @@ class friend {
                 _id: this.myId,
                 inbox: new Array()
             }
-            const found = friend.friends.find(e => e.info == this.myId)
+            const found = friend.friends.find(e => e.info == this.myId || e.info == o_id.toString())
             const notificationFriend = {
                 message: `${me.username} te lhe enviou um pedido de amizade.`,
                 seen: false,
@@ -46,22 +49,17 @@ class friend {
                 cratedAt: new Date()
             }
             if(!found){
-                friend.friends.push(fraQ)
-                friend.notifications.push(notificationFriend)
-                room.in(o_id.toString()).emit('notification', {
-                    notificationFriend
-                })
-            } else{
-                const index = me.friends.indexOf(found)
-                friend.friends.splice(index, 1)
-                const foundNoti = friend.notifications.find(e => e.info == this.myId.toString())
-                if(foundNoti){
-                    const indexNoti = friend.notifications.indexOf(foundNoti)
-                    friend.notifications.splice(indexNoti, 1)
+                const foundNoti = friend.notifications.find(e => e.info == this.myId || e.info == o_id.toString())
+                if(!foundNoti){
+                    friend.friends.push(fraQ)
+                    friend.notifications.push(notificationFriend)
+                        room.in(o_id.toString()).emit('notification', {
+                        notificationFriend
+                    })
                 }
             }
             this.myId = undefined
-            const strangerAddFriend = await db.collection("users").findOneAndUpdate(
+            await db.collection("users").findOneAndUpdate(
                 {"_id": o_id},
                 { $set: friend }
             )

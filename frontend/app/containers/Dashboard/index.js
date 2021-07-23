@@ -27,22 +27,37 @@ export class Dashboard extends React.Component {
     super(props);
     this.state = {
       amigosSugeridos: [],
-      notifications: []
+      notifications: this.props.user.notifications || [],
+      friends: []
     }
   }
   componentDidMount(){
     online()
     const react = this
-    socket.on('message', msg => {
-      console.log(msg)
+    socket.on('friends', data => {
+      react.setState({friends: data})
     })
     socket.on('friendsSuge', data => {
       react.setState({ amigosSugeridos: data })
     })
+    socket.on('newFriend', data => {
+      if(!react.state.friends.find(e => e.username == data.friend.friend.username)){
+        const old = [...react.state.friends, data.friend.friend]
+        react.setState({friends, old})
+      }
+    })
     socket.on('notification', data => {
       const old = [...react.state.notifications, data.notificationFriend]
-      console.log(old)
-      react.setState({notifications: old})
+      if(!react.state.notifications.find(e => e.info == data.notificationFriend.info) && data.type === undefined){
+        react.setState({notifications: old})
+      }
+      if(data.type !== undefined){
+        const old = [...react.state.notifications]
+        const found = old.find(e => e.info == data.notificationFriend.info)
+        const index = old.indexOf(found)
+        old.splice(index, 1)
+        react.setState({notifications: old})
+      }
     })
   }
   addFriend(friendId){
@@ -62,25 +77,45 @@ export class Dashboard extends React.Component {
         >
         </Helmet>
         <div>
+          { this.state.amigosSugeridos.filter(e => this.state.friends.find(b => b.username !== e.username)).length > 0 &&
+            <ul>
+            <h1>Amigos sugeridos</h1>
+            { this.state.amigosSugeridos.filter(e => this.state.friends.find(b => b.username !== e.username),(item, i) =>
+                  <li
+                  key={user._id}
+                  >{user.username}
+                  <button
+                  onClick={() => this.addFriend(user._id)}
+                  >
+                    Add
+                  </button>
+                  </li>
+            )}
+            </ul>
+          }
+          <h1>Amigos { this.state.friends.length} </h1>
           <ul>
-          { this.state.amigosSugeridos.map((user, i) =>
+          { this.state.friends.map((friend, i) =>
                 <li
-                key={user._id}
-                >{user.username}
-                <button
-                onClick={() => this.addFriend(user._id)}
-                >Add</button>
-                </li>
-          )}
-          </ul>
-          <ul>
-          { this.state.notifications.map((notification, i) =>
-                <li
-                key={notification.info}
                 >
-                {notification.message}
-                <button>Aceitar</button>
+                {friend.username}
+                {
+                !friend.isFriend && !friend.sendByMe &&
+                <div>
+                  <button>Aceitar</button>
+                  <button>Recusar</button>
+                </div>
+                }
+                {
+                !friend.isFriend && friend.sendByMe &&
+                <div>
+                  <button>Cancelar</button>
+                </div>
+                }
+                {
+                friend.isFriend && !friend.sendByMe &&
                 <button>Remover</button>
+                }
                 </li>
           )}
           </ul>

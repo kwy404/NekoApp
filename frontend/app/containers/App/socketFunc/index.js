@@ -24,6 +24,12 @@ export const online = () => {
             token: token ? token : null
         }
     });
+    socket.emit('message', {
+        c: "gF",
+        d: {
+            token: token ? token : null
+        }
+    });
 }
 
 export const sendSocket = () => {

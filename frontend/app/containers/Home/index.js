@@ -31,8 +31,8 @@ const config = require('../../socket/config');
   const [sendApi, setSendApi] = useState(false);
 
   const estouLogado = usuario => {
-    setLogged(true)
     setUser(usuario)
+    setLogged(true)
   }
   
   const logout = () => {

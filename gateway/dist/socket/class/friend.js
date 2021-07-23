@@ -24,10 +24,8 @@ class friend {
                 me.friends.push(this)
             } else{
                 const index = me.friends.indexOf(found)
-                me.friends[index].status = "Aceito"
-                me.friends[index].isFriend = true
             }
-            const meAddFriend = await db.collection("users").findOneAndUpdate(
+            await db.collection("users").findOneAndUpdate(
                 { "token" : token },
                 { $set: me }
             )
@@ -58,30 +56,10 @@ class friend {
                         room.in(o_id.toString()).emit('notification', {
                         notificationFriend
                     })
-                } else{
-                    const indexNoti = friend.notifications.indexOf(foundNoti)
-                    friend.notifications.splice(indexNoti, 1)
-                    room.in(o_id.toString()).emit('notification', {
-                        notificationFriend,
-                        type: "remove"
-                    })
-                }
-            } else{
-                const index = friend.friends.indexOf(found)
-                me.friends[index].status = "Aceito"
-                me.friends[index].isFriend = true
-                const foundNoti = friend.notifications.find(e => e.info == this.myId || e.info == o_id.toString())
-                if(foundNoti){
-                    const indexNoti = friend.notifications.indexOf(foundNoti)
-                    friend.notifications.splice(indexNoti, 1)
-                    room.in(o_id.toString()).emit('notification', {
-                        notificationFriend,
-                        type: "remove"
-                    })
                 }
             }
             this.myId = undefined
-            const strangerAddFriend = await db.collection("users").findOneAndUpdate(
+            await db.collection("users").findOneAndUpdate(
                 {"_id": o_id},
                 { $set: friend }
             )

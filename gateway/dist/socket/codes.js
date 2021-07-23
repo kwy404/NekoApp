@@ -20,6 +20,10 @@ module.exports = codes = [
         command: "notification"
     },
     {
+        code: 'gF',
+        command: "getFriends"
+    },
+    {
         code: 'freq',
         command: "friendRequest"
     },

@@ -19,12 +19,9 @@
  const { SubMenu } = Menu;
  const { Header, Content, Sider } = Layout;
  
-
- 
-import { userLogin, nInfo } from "../App/socketFunc"
-import { Dashboard } from '../Dashboard';
-import { Welcome } from '../Welcome';
-import axios from 'axios'
+ import { Dashboard } from '../Dashboard';
+ import { Welcome } from '../Welcome';
+ import axios from 'axios'
 
 const config = require('../../socket/config');
 

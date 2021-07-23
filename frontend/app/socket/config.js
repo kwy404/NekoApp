@@ -1,4 +1,4 @@
 export let configSite = {
-    'socket': 'http://localhost:8000',
+    'socket': 'ws://localhost:8000',
     'api': 'http://localhost:5000'
 }

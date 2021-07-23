@@ -48,14 +48,7 @@ export class Dashboard extends React.Component {
     })
     socket.on('notification', data => {
       const old = [...react.state.notifications, data.notificationFriend]
-      if(!react.state.notifications.find(e => e.info == data.notificationFriend.info) && data.type === undefined){
-        react.setState({notifications: old})
-      }
-      if(data.type !== undefined){
-        const old = [...react.state.notifications]
-        const found = old.find(e => e.info == data.notificationFriend.info)
-        const index = old.indexOf(found)
-        old.splice(index, 1)
+      if(!react.state.notifications.find(e => e.info == data.notificationFriend.info)){
         react.setState({notifications: old})
       }
     })
@@ -77,10 +70,13 @@ export class Dashboard extends React.Component {
         >
         </Helmet>
         <div>
-          { this.state.amigosSugeridos.filter(e => this.state.friends.find(b => b.username !== e.username)).length > 0 &&
+          <button
+          onClick={() => this.props.logout()}
+          >Sair</button>
+          { this.state.amigosSugeridos.filter(e => this.state.friends.find(b => b.username !== e.username)).length == 0 &&
             <ul>
             <h1>Amigos sugeridos</h1>
-            { this.state.amigosSugeridos.filter(e => this.state.friends.find(b => b.username !== e.username),(item, i) =>
+            { this.state.amigosSugeridos.map((user, i) =>
                   <li
                   key={user._id}
                   >{user.username}
@@ -93,6 +89,15 @@ export class Dashboard extends React.Component {
             )}
             </ul>
           }
+          <h1>Notificacao { this.state.notifications.length} </h1>
+          <ul>
+          { this.state.notifications.map((notifica, i) =>
+                <li
+                >
+                  { notifica.message  }
+                </li>
+          )}
+          </ul>
           <h1>Amigos { this.state.friends.length} </h1>
           <ul>
           { this.state.friends.map((friend, i) =>

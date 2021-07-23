@@ -41,12 +41,12 @@ module.exports = ws = async ({ port, voidBack }) => {
                         })
                     }
                 })
-                socket.on('disconnect', msg => {
+                socket.on('disconnect', () => {
                     emit({
                         type: constants(`dis`),
                         data: {session: socket.id},
                         socket,
-                         WS
+                        WS
                     })
                 })
             })

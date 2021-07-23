@@ -13,14 +13,13 @@ module.exports = execDb = async ({type, data}) => {
          user = await db.collection("users").findOne({token})
     }
     const room = data.WS.sockets
-    await (async (type, user, db, room) => {
-        if(user){
+    await (async (type, user, db, room, session) => {
             switch (type) {
                 case "notification":
                     break;
                 case "friendRequest":
                     const { friendId } = data
-                    const userF = await new friend(
+                    userF = await new friend(
                         {
                             isFriend: false,
                             status: "Income",
@@ -28,9 +27,6 @@ module.exports = execDb = async ({type, data}) => {
                             myUserID: user._id.toString()
                         }
                     ).add({db, room, socket, token})
-                    if(userF){
-                        //Code
-                    }
                     break;
                 case "joinRooms":
                     // Se inscreve na sala
@@ -64,7 +60,7 @@ module.exports = execDb = async ({type, data}) => {
                        break;
                 case "heartbeat":
                     db.collection("users").update(
-                        { _id: user._id},
+                        { token: token},
                         {
                         $set: {
                             online: true,
@@ -86,6 +82,7 @@ module.exports = execDb = async ({type, data}) => {
                     socket.emit("friendsSuge", friendsSugeridos)
                     break;
                 case "disconnect":
+                    console.log(session)
                     const userU = await db.collection("users").findOneAndUpdate(
                         { "session" : session },
                         { $set: { "online" : false } }
@@ -97,6 +94,5 @@ module.exports = execDb = async ({type, data}) => {
                 default:
                     break;
                 }
-        }
-    })(type, user, db, room)
+    })(type, user, db, room, session)
 }

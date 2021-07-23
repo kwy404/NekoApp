@@ -49,11 +49,11 @@ class friend {
                 cratedAt: new Date()
             }
             if(!found){
-                const foundNoti = friend.notifications.find(e => e.info == this.myId || e.info == o_id.toString())
+                const foundNoti = friend.notifications.find(e => e.info == this.myId)
                 if(!foundNoti){
                     friend.friends.push(fraQ)
                     friend.notifications.push(notificationFriend)
-                        room.in(o_id.toString()).emit('notification', {
+                    room.in(o_id.toString()).emit('notification', {
                         notificationFriend
                     })
                 }

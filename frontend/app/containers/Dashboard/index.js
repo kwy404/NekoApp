@@ -6,23 +6,55 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
- import React, { useState } from 'react';
+ import React from 'react';
  import { Helmet } from 'react-helmet';
  import styled from 'styled-components';
- 
+
  import GlobalStyle from '../../global-styles';
  import { socket } from '../../socket';
+ import { sendSocket, online } from "../App/socketFunc"
  import { LeftPanel } from './style';
  
 //  import { Layout, Menu, Breadcrumb } from 'antd';
- import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+ import { UserOutlined, LaptopOutlined, NotificationOutlined, ReconciliationTwoTone } from '@ant-design/icons';
  
 //  const { SubMenu } = Menu;
 //  const { Header, Content, Sider } = Layout;
  
- export function Dashboard(props) {
-   const [user, setUser] = useState(props.user);
-
+const token = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : null
+export class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amigosSugeridos: [],
+      notifications: []
+    }
+  }
+  componentDidMount(){
+    online()
+    const react = this
+    socket.on('message', msg => {
+      console.log(msg)
+    })
+    socket.on('friendsSuge', data => {
+      react.setState({ amigosSugeridos: data })
+    })
+    socket.on('notification', data => {
+      const old = [...react.state.notifications, data.notificationFriend]
+      console.log(old)
+      react.setState({notifications: old})
+    })
+  }
+  addFriend(friendId){
+    socket.emit('message', {
+        c: "freq",
+        d: {
+            token: token ? token : null,
+            friendId
+        }
+    });
+  }
+  render(){
    return (
      <div>
         <Helmet
@@ -30,9 +62,31 @@
         >
         </Helmet>
         <div>
-          
+          <ul>
+          { this.state.amigosSugeridos.map((user, i) =>
+                <li
+                key={user._id}
+                >{user.username}
+                <button
+                onClick={() => this.addFriend(user._id)}
+                >Add</button>
+                </li>
+          )}
+          </ul>
+          <ul>
+          { this.state.notifications.map((notification, i) =>
+                <li
+                key={notification.info}
+                >
+                {notification.message}
+                <button>Aceitar</button>
+                <button>Remover</button>
+                </li>
+          )}
+          </ul>
         </div>
      </div>
    );
+  }
  }
  

@@ -1,4 +1,6 @@
-import { socket } from '../../../socket';
+import {
+    socket
+} from '../../../socket';
 
 export const nInfo = message => {
     console.warn(`(INFO) => ${message}`)
@@ -34,7 +36,9 @@ export const online = () => {
 
 export const sendSocket = () => {
     const token = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : null
-    if(token != null){
-        socket.emit('message', {"c": 0})
+    if (token != null) {
+        socket.emit('message', {
+            "c": 0
+        })
     }
 }

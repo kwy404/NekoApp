@@ -1,11 +1,11 @@
 const constants = require("./constants.js");
-const emit  = require("./emit.js");
+const emit = require("./emit.js");
 const express = require("express");
-const http  = require("http");
+const http = require("http");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const customParser = require("socket.io-msgpack-parser");
-const dotenv  = require("dotenv");
+const dotenv = require("dotenv");
 
 dotenv.config()
 const app = express();
@@ -27,12 +27,15 @@ app.get(`/`, (req, res) => {
     res.send(`Gateway NekoApp ${v}`)
 })
 
-module.exports = ws = async ({ port, voidBack }) => {
+module.exports = ws = async ({
+    port,
+    voidBack
+}) => {
     ((voidBack) => {
         serve.listen(port, async () => {
             WS.on('connection', function(socket) {
                 socket.on('message', msg => {
-                    if(msg.c && msg.d){
+                    if (msg.c && msg.d) {
                         emit({
                             type: constants(msg.c),
                             data: msg.d,
@@ -41,12 +44,14 @@ module.exports = ws = async ({ port, voidBack }) => {
                         })
                     }
                 })
-                socket.on('disconnect', msg => {
+                socket.on('disconnect', () => {
                     emit({
                         type: constants(`dis`),
-                        data: {session: socket.id},
+                        data: {
+                            session: socket.id
+                        },
                         socket,
-                         WS
+                        WS
                     })
                 })
             })

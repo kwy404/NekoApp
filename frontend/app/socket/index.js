@@ -1,24 +1,28 @@
 const config = require('./config')
-const ws = require("socket.io-client")(config.configSite.socket, {
+const wsG = require("socket.io-client")(config.configSite.socketG, {
   parser: require("socket.io-msgpack-parser")
+});
+
+const wsC = require("socket.io-client")(config.configSite.socketC, {
+    parser: require("socket.io-msgpack-parser")
 });
 
 const token = window.localStorage.getItem(`token`)
 
-ws.on('connect', () => {
-    ws.emit('message', {
+wsG.on('connect', () => {
+    wsG.emit('message', {
         c: "h",
         d: {
             token: token ? token : null
         }
     });
-    ws.emit('message', {
+    wsG.emit('message', {
         c: "frS",
         d: {
             token: token ? token : null
         }
     });
-    ws.emit('message', {
+    wsG.emit('message', {
         c: "jr",
         d: {
             token: token ? token : null
@@ -26,4 +30,19 @@ ws.on('connect', () => {
     });
 });
 
-export const socket = ws
+wsC.on('connect', () => {
+    wsC.emit('message', {
+        c: "h",
+        d: {
+            token: token ? token : null
+        }
+    });
+    wsC.emit('message', {
+        c: "jr",
+        d: {
+            token: token ? token : null
+        }
+    });
+});
+
+export const socket = {wg: wsG, wc: wsC}

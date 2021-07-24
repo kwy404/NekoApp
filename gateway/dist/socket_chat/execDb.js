@@ -21,6 +21,33 @@ module.exports = execDb = async ({
     const room = data.WS.sockets
     await (async (type, user, db, room, session) => {
         switch (type) {
+            case "heartbeat":
+                db.collection("users").update({
+                    token: token
+                }, {
+                    $set: {
+                        onlineChat: true,
+                        sessionChat: socket.id
+                    }
+                })
+                break;
+            case "joinRoomChat":
+                //Se inscreve no chat Privado
+                socket.join(user._id.toString())
+                break;
+            case "disconnect":
+                const userU = await db.collection("users").findOneAndUpdate({
+                    "sessionChat": session
+                }, {
+                    $set: {
+                        "onlineChat": false
+                    }
+                })
+                if (userU) {
+                    console.log(`[ Disconnect chat ] ${userU.value.username}.`)
+                }
+                break;
+            
             default:
                 break;
         }

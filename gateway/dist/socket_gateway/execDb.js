@@ -95,7 +95,6 @@ module.exports = execDb = async ({
                 socket.emit("friendsSuge", friendsSugeridos)
                 break;
             case "disconnect":
-                console.log(session)
                 const userU = await db.collection("users").findOneAndUpdate({
                     "session": session
                 }, {

@@ -1,21 +1,27 @@
-const ws = require("./dist/socket/messages.js");
-
+const typeServer = require("./types_server.js");
 class server {
     constructor({
-        port
+        port,
+        type
     }) {
+        this.socket = typeServer(type)
         this.port = port
         this.server = `http://localhost:${port}`
-        const voidBack = () => {
-            this.start(this.server)
+        if(!this.socket){
+            console.log(`[ ERROR ] Socket ${type} dont found.`)
+            return;
         }
-        ws({
-            port,
-            voidBack
+        const voidBack = () => {
+            this.start(this.server, this.socket.message)
+        }
+        this.socket.void({
+         port,
+         voidBack   
         })
+        
     }
-    start(server) {
-        console.log(`[ Gateway ] Starting in ${server}.`)
+    start(server, message) {
+        console.log(`[ ${message} ] Starting in ${server}.`)
     }
 }
 

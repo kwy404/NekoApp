@@ -34,19 +34,19 @@ export class Dashboard extends React.Component {
   componentDidMount(){
     online()
     const react = this
-    socket.on('friends', data => {
+    socket.wg.on('friends', data => {
       react.setState({friends: data})
     })
-    socket.on('friendsSuge', data => {
+    socket.wg.on('friendsSuge', data => {
       react.setState({ amigosSugeridos: data })
     })
-    socket.on('newFriend', data => {
+    socket.wg.on('newFriend', data => {
       if(!react.state.friends.find(e => e.username == data.friend.friend.username)){
         const old = [...react.state.friends, data.friend.friend]
         react.setState({friends, old})
       }
     })
-    socket.on('notification', data => {
+    socket.wg.on('notification', data => {
       const old = [...react.state.notifications, data.notificationFriend]
       if(!react.state.notifications.find(e => e.info == data.notificationFriend.info)){
         react.setState({notifications: old})
@@ -54,7 +54,7 @@ export class Dashboard extends React.Component {
     })
   }
   addFriend(friendId){
-    socket.emit('message', {
+    socket.wg.emit('message', {
         c: "freq",
         d: {
             token: token ? token : null,

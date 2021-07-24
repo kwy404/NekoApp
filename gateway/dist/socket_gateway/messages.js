@@ -27,7 +27,7 @@ app.get(`/`, (req, res) => {
     res.send(`Gateway NekoApp ${v}`)
 })
 
-module.exports = ws = async ({
+module.exports = wsG = async ({
     port,
     voidBack
 }) => {
@@ -36,12 +36,15 @@ module.exports = ws = async ({
             WS.on('connection', function(socket) {
                 socket.on('message', msg => {
                     if (msg.c && msg.d) {
-                        emit({
-                            type: constants(msg.c),
-                            data: msg.d,
-                            socket,
-                            WS
-                        })
+                        const found = constants(msg.c)
+                        if(found.error === undefined){
+                            emit({
+                                type: found,
+                                data: msg.d,
+                                socket,
+                                WS
+                            })
+                        }
                     }
                 })
                 socket.on('disconnect', () => {

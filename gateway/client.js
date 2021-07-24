@@ -7,5 +7,12 @@
  
  // Start gateway
  new server({
-     port: process.env.PORT
+     port: process.env.PORT,
+     type: "g"
  })
+
+ // Start gateway chat
+ new server({
+    port: process.env.PORTChat,
+    type: "c"
+})

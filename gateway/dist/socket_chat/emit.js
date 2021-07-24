@@ -8,13 +8,8 @@ module.exports = emit = async ({
 }) => {
     data.socket = socket
     data.WS = WS
-    const returnBack = await execDb({
+    await execDb({
         type,
         data
     })
-    const emitMessages = {
-        data,
-        type
-    }
-    return emitMessages
 }

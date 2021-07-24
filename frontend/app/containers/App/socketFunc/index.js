@@ -6,36 +6,9 @@ export const nInfo = message => {
     console.warn(`(INFO) => ${message}`)
 }
 
-export const online = () => {
-    const token = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : null
-    socket.wc.on("disconnect", () => {
-        online()
-        socket.wc.connect();
-    })
-    socket.wg.on("disconnect", () => {
-        online()
-        socket.wg.connect();
-    })
-    socket.wg.io.on("reconnect", (attempt) => {
-        online()
-        socket.wg.connect();
-    });
-    socket.wc.io.on("reconnect", (attempt) => {
-        online()
-        socket.wc.connect();
-    });
-    socket.wc.emit('message', {
-        c: "jr",
-        d: {
-            token: token ? token : null
-        }
-    });
-    socket.wc.emit('message', {
-        c: "h",
-        d: {
-            token: token ? token : null
-        }
-    });
+const token = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : null
+
+const ifOnGateway = () => {
     socket.wg.emit('message', {
         c: "h",
         d: {
@@ -60,6 +33,40 @@ export const online = () => {
             token: token ? token : null
         }
     });
+}
+
+const ifOnChat = () => {
+    socket.wc.emit('message', {
+        c: "jr",
+        d: {
+            token: token ? token : null
+        }
+    });
+    socket.wc.emit('message', {
+        c: "h",
+        d: {
+            token: token ? token : null
+        }
+    });
+}
+
+export const online = () => {
+    socket.wc.on("connect", () => {
+        ifOnChat()
+    })
+    socket.wg.on("connect", () => {
+        ifOnGateway()
+    })
+    socket.wg.io.on("disconnect", (attempt) => {
+        ifOnGateway()
+        socket.wg.connect();
+    });
+    socket.wc.io.on("disconnect", (attempt) => {
+        ifOnChat()
+        socket.wc.connect();
+    });
+   
+    
 }
 
 export const sendSocket = () => {

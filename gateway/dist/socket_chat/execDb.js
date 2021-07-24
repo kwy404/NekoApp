@@ -19,7 +19,7 @@ module.exports = execDb = async ({
         })
     }
     const room = data.WS.sockets
-    await (async (type, user, db, room, session) => {
+    await (async (type, user, db, room, session, socket) => {
         switch (type) {
             case "heartbeat":
                 db.collection("users").update({
@@ -51,5 +51,5 @@ module.exports = execDb = async ({
             default:
                 break;
         }
-    })(type, user, db, room, session)
+    })(type, user, db, room, session, socket)
 }

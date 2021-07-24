@@ -33,12 +33,16 @@ const config = require('../../socket/config');
   const estouLogado = usuario => {
     setUser(usuario)
     setLogged(true)
+    socket.wc.connect();
+    socket.wg.connect();
   }
   
   const logout = () => {
     setLogged(false)
     setUser({})
     window.localStorage.setItem(`token`, null)
+    socket.wc.disconnect();
+    socket.wg.disconnect();
   }
 
   const validarToken = async () => {

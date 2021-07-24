@@ -32,14 +32,6 @@ import { canvasAnima } from "./canvas";
 
 export function Welcome(props) {
   const [step, setStep] = useState(0);
-  const logar = () => {
-    if(username && password){
-      socket.emit(`login`, {
-        username,
-        password
-      })
-    }
-  }
    canvasAnima()
    return (
      <div style={{

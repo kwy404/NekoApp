@@ -8,6 +8,22 @@ export const nInfo = message => {
 
 export const online = () => {
     const token = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : null
+    socket.wc.on("disconnect", () => {
+        online()
+        socket.wc.connect();
+    })
+    socket.wg.on("disconnect", () => {
+        online()
+        socket.wg.connect();
+    })
+    socket.wg.io.on("reconnect", (attempt) => {
+        online()
+        socket.wg.connect();
+    });
+    socket.wc.io.on("reconnect", (attempt) => {
+        online()
+        socket.wc.connect();
+    });
     socket.wc.emit('message', {
         c: "jr",
         d: {

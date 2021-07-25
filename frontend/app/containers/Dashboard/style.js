@@ -233,6 +233,35 @@ export const bar = styled.div`
 `
 
 export const scroller = styled.div`
+    .ativoHome .wrapper{
+        background-color: var(--brand-experiment) !important;
+        border-radius: 100%;
+        animation: animation 0.4s ease;
+    }
+    .ativoHome .pill .item{
+        height: 40px !important;
+    }
+    .isHome{
+        transition: 0.4s ease;
+        background-color: var(--background-primary);
+        animation: animationBack 0.4s ease;
+    }
+    @keyframes animation {
+        0%{
+            border-radius: 0%;
+        }
+        100%{
+            border-radius: 100%;
+        }
+    }
+    @keyframes animationBack {
+        0%{
+            border-radius: 100%;
+        }
+        100%{
+            border-radius: 0%;
+        }
+    }
     overflow: hidden scroll
     padding-right: 0px !important;
     -webkit-user-select: none !important;
@@ -240,7 +269,6 @@ export const scroller = styled.div`
     -ms-user-select: none !important;
     user-select: none !important;
     padding: 12px 0 0 !important;
-    background-color: var(--background-tertiary) !important;
     contain: layout size !important;
     position: relative !important;
     -webkit-box-sizing: border-box !important;
@@ -264,6 +292,12 @@ export const tutorialContainer = styled.div`
         justify-content: center;
         width: 72px;
         .pill{
+            .item{
+                transition: height 0.4s ease;
+                opacity: 1;
+                height: 10px;
+                transform: none;
+            }
             position: absolute;
             top: 0;
             left: -3px;
@@ -300,11 +334,11 @@ export const tutorialContainer = styled.div`
                 cursor: pointer;
                 .childWrapper{
                     color: #fff;
-                    background-color: var(--brand-experiment);
-                    -webkit-transition: background-color .15s ease-out,color .15s ease-out;
-                    transition: background-color .15s ease-out,color .15s ease-out;
+                    -webkit-transition: all .15s ease-out,color .15s ease-out;
+                    transition: all .15s ease-out,color .15s ease-out;
                     color: var(--text-normal);
                     height: 55px;
+                    border-radius: 0%;
                 }
                 .svg1{
                     -webkit-box-sizing: border-box;
@@ -356,6 +390,7 @@ export const listItem = styled.div`
             width: 48px;
             height: 48px;
             cursor: pointer;
+            
             svg{
                 -webkit-box-sizing: border-box;
                 box-sizing: border-box;

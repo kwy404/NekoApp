@@ -23,15 +23,11 @@ return (
             <Link to={{
                   pathname: `/channels/@me`
             }}>
-            <s.tutorialContainer>
+            <s.tutorialContainer className={(location.pathname.split("/")[1] === "channels" 
+            && location.pathname.split("/")[2] === "@me" ? "ativoHome" : "")}>
                <div className="listItem">
                   <div className="pill">
                      <span 
-                     style={{
-                     opacity: 1,
-                     height: `40px`,
-                     transform: `none`
-                     }}
                      className="item">
                      </span>
                   </div>
@@ -45,7 +41,7 @@ return (
                               <use href="#f67e61ce-3b4b-405f-8d5e-d8619775b712-blob_mask" fill="white"></use>
                            </mask>
                            <foreignObject mask="url(#f67e61ce-3b4b-405f-8d5e-d8619775b712)" x="0" y="0" width="48" height="48">
-                              <div className="wrapper" role="listitem" data-list-item-id="guildsnav___home" tabIndex="-1" 
+                              <div className="wrapper isHome" role="listitem" data-list-item-id="guildsnav___home" tabIndex="-1" 
                                  aria-label="Início">
                                  <div className="childWrapper">
                                     <svg className="homeIcon" aria-hidden="false" width="28" height="20" viewBox="0 0 28 20">

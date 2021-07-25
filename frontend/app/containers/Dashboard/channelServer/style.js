@@ -38,7 +38,7 @@ export const sidebar = styled.div`
     flex-direction: column;
     min-height: 0;
     position: relative;
-    width: 230px;
+    width: 240px;
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -410,16 +410,18 @@ export const panels = styled.section`
                 font-size: 14px;
                 font-weight: 500;
                 line-height: 16px;
-                padding: 2px 10px;
+                padding: 2px 6px;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
                 position: relative;
-                left: 7px;
+                left: 19px;
             }
         }
         .nameTag{
+            position: relative;
+            left: -14px;
             cursor: pointer;
             -webkit-user-select: text;
             -moz-user-select: text;
@@ -457,7 +459,9 @@ export const panels = styled.section`
         }
         .avatarWrapper{
             cursor: pointer;
-            margin-right: 8px;
+            margin-right: 4px;
+            position: relative;
+            left: -22px;
             .avatar{
                 width: 32px;
                 height: 32px;

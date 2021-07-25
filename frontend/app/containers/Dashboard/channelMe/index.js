@@ -56,7 +56,7 @@ export function ChannelsMe(props){
                             status={`online`}
                             _id="0"
                             type={`md`}
-                            title={`balle`}
+                            title={`usuario`}
                             >
                             </Channel>
                         </s.privateChannels>

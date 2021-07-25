@@ -5,7 +5,8 @@ import * as s from './style';
 export function Icon(props) {
 return (
 <div>
-   <s.listItem>
+   <s.listItem
+   >
       <div className="blobContainer">
          <div className="wrapper">
             <svg width="48" height="48" viewBox="0 0 48 48" className="svg-1X37T1" overflow="visible">

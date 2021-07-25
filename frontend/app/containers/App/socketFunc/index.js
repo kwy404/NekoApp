@@ -65,8 +65,6 @@ export const online = () => {
         ifOnChat()
         socket.wc.connect();
     });
-   
-    
 }
 
 export const sendSocket = () => {

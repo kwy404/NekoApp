@@ -16,3 +16,9 @@
     port: process.env.PORTChat,
     type: "c"
 })
+
+ // Start gateway validation
+ new server({
+    port: process.env.PORTValidation,
+    type: "v"
+ })

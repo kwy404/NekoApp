@@ -6,6 +6,7 @@ import {
   Wrapper,
   MainRegister,
 } from "./style";
+import { socket } from '../../socket';
 import React, { Component, useState } from "react";
 import { userLogin } from "../App/socketFunc";
 
@@ -23,6 +24,8 @@ export function FormRegister(props) {
   const [errorP, setErrorP] = useState(false);
   const [errorU, setErrorU] = useState(false);
   const [messageError, setMessageError] = useState(``);
+  const [interval, setIn] = useState(false);
+
   const focusUsername = () => {
     username.trim().length == 0 ? setErrorU(true) : setErrorU(false)
     document

@@ -241,10 +241,22 @@ export const scroller = styled.div`
     .ativoHome .pill .item{
         height: 40px !important;
     }
-    .isHome{
+    .isHome .wrapper{
         transition: 0.4s ease;
         background-color: var(--background-primary);
         animation: animationBack 0.4s ease;
+    }
+    .isHome:hover{
+        > .pill .item{
+            height: 20px;
+        }
+    }
+    .isHome .wrapper:hover{
+        background-color: var(--brand-experiment) !important;
+        border-radius: 0%;
+        > .pill .item{
+            height: 20px !important;
+        }
     }
     @keyframes animation {
         0%{

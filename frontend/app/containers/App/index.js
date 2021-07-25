@@ -48,13 +48,13 @@ export default function App() {
         }, 2000);
         socket.wv.on('validation', user => {
           if(user.error){
-            setUser({})
             setIn(false)
             clearInterval(verificaTimer)
             socket.wc.disconnect();
             socket.wg.disconnect();
             socket.wv.disconnect();
           } else{
+            setUser(user)
             setLogged(true)
           }
         })

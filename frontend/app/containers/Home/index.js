@@ -30,8 +30,6 @@
     super(props);
     this.props = props;
     this.state = {
-      logged: false,
-      user: {}
     }
   }
   componentDidMount(){
@@ -43,13 +41,12 @@
         <Helmet
         defaultTitle={`NekoApp - Início`}
         >
-        <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <div>
         { this.props.logged ? <Dashboard
         route={this.props.route}
         logout={this.props.logout}
-        user={this.state.user}/>
+        user={this.props.user}/>
         : <Welcome estouLogado={() => this.props.estouLogado}/>
         }
         </div>

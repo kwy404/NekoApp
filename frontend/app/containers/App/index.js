@@ -28,6 +28,8 @@ import axios from 'axios'
 
 const config = require('../../socket/config');
 
+var userE = {}
+
 export default function App() {
   const [user, setUser] = useState({});
   const [logged, setLogged] = useState(false);
@@ -46,16 +48,20 @@ export default function App() {
             }
           })
         }, 2000);
-        socket.wv.on('validation', user => {
-          if(user.error){
-            setIn(false)
+        socket.wv.on('validation', userS => {
+          if(userS.error){
             clearInterval(verificaTimer)
             socket.wc.disconnect();
             socket.wg.disconnect();
             socket.wv.disconnect();
           } else{
-            setUser(user)
-            setLogged(true)
+            if(userE.username === undefined ||
+              userS.notifications && userS.notifications.length > userE.notifications.length ||
+              userS.friends && userS.friends.length > userE.friends.length
+              ){
+              userE = userS
+              setLogged(true)
+            }
           }
         })
       }
@@ -94,7 +100,7 @@ export default function App() {
         <Route exact path="/app" component={() => 
         <HomePage 
         route="@me"
-        user={user}
+        user={userE}
         setApi={setApi}
         sendApi={sendApi}
         logout={logout}
@@ -108,25 +114,36 @@ export default function App() {
         sendApi={sendApi}
         estouLogado={estouLogado}
         logout={logout}
-        user={user}
+        user={userE}
         setApi={setApi}
         logged={logged}/>
         }/>
 
-        <Route exact path="/channels/:server/:channel" component={() => 
+        <Route exact path="/channel/:server/:channel" component={() => 
         <HomePage 
         logged={logged}
-        user={user}
+        user={userE}
         setApi={setApi}
         sendApi={sendApi}
         estouLogado={estouLogado}
         logout={logout}
         route="channel"/>
         }/>
+
+        <Route exact path="/channels/@me/:userId" component={() => 
+        <HomePage 
+        logged={logged}
+        user={userE}
+        setApi={setApi}
+        sendApi={sendApi}
+        estouLogado={estouLogado}
+        logout={logout}
+        route="@me"/>
+        }/>
         
         <Route exact path="/channels/@me" component={() => 
         <HomePage
-        user={user}
+        user={userE}
         setApi={setApi}
         sendApi={sendApi}
         estouLogado={estouLogado}

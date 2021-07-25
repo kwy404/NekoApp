@@ -26,7 +26,7 @@ return (
                </mask>
                <foreignObject mask="url(#b770ef38-425e-4fb3-9f9b-4a2a4d55ef29)" x="0" y="0" width="48" height="48">
                <Link to={{
-                  pathname: `/channels/${props.idServer}/${props.idChannel}`,
+                  pathname: `/channel/${props.idServer}/${props.idChannel}`,
                   state: { fromLandingPage: true }
                 }}>
                   <div className="wrapper-1BJsBx" role="treeitem" data-list-item-id="guildsnav___789888698673922078" tabIndex="-1"

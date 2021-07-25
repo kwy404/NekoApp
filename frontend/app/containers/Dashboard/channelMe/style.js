@@ -53,6 +53,10 @@ export const sidebar = styled.div`
 `
 
 export const privateChannels = styled.nav`
+    .ativo .layout{
+        color: var(--interactive-hover) !important;
+        background-color: var(--background-modifier-hover) !important;
+    }
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden;

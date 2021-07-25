@@ -34,6 +34,11 @@ export function ChannelsMe(props){
                                 </button>
                             </div>
                             <Channel
+                            ativo={
+                                location.pathname.split("/")[1] === "channels" 
+                                && location.pathname.split("/")[2] == "@me"
+                                && location.pathname.split("/")[3] === undefined
+                            }
                             title={`Amigos`}
                             >
                             </Channel>
@@ -49,6 +54,7 @@ export function ChannelsMe(props){
                             </s.privateChannelsHeader>
                             <Channel
                             status={`online`}
+                            _id="0"
                             type={`md`}
                             title={`balle`}
                             >

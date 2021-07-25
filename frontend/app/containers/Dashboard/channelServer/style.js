@@ -89,9 +89,12 @@ export const privateChannels = styled.nav`
             color: var(--header-primary);
             -webkit-box-shadow: var(--elevation-low);
             box-shadow: var(--elevation-low);
+            :hover{
+                background-color: var(--background-secondary);
+            }
             .name{
                 font-weight: 600;
-                font-size: 15px;
+                font-size: 17px;
                 line-height: 20px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -99,6 +102,8 @@ export const privateChannels = styled.nav`
                 -webkit-box-flex: 1;
                 -ms-flex: 1;
                 flex: 1;
+                margin-top: 10px;
+                color: white;
             }
         }
         z-index: 2;

@@ -7,6 +7,10 @@ const wsC = require("socket.io-client")(config.configSite.socketC, {
     parser: require("socket.io-msgpack-parser")
 });
 
+const wsV = require("socket.io-client")(config.configSite.socketV, {
+  parser: require("socket.io-msgpack-parser")
+});
+
 const token = window.localStorage.getItem(`token`)
 
-export const socket = {wg:wsG, wc: wsC}
+export const socket = {wg: wsG, wc: wsC, wv: wsV}

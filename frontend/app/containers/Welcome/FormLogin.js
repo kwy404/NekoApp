@@ -15,7 +15,7 @@ const config = require('../../socket/config');
 
 import { Helmet } from 'react-helmet';
 import React, { Component, useState } from "react";
-import { userLogin } from "../App/socketFunc";
+import { socket } from '../../socket';
 
 export function FormLogin(props) {
   const [email, setEmail] = useState(``);
@@ -23,6 +23,8 @@ export function FormLogin(props) {
   const [errorE, setErrorE] = useState(false);
   const [errorP, setErrorP] = useState(false);
   const [messageError, setMessageError] = useState(``)
+  const [interval, setIn] = useState(false);
+
   const focusEmail = () => {
     email.trim().length == 0 ? setErrorE(true) : setErrorE(false)
     document
@@ -66,7 +68,6 @@ export function FormLogin(props) {
       const user = await axios.post(`${config.configSite.api}/api/v1/login?email=${email}&password=${password}`)
       if(user.data.username){
         window.localStorage.setItem(`token`, user.data.token )
-        console.log(user.data)
         props.estouLogado()()(user.data)
       } else{
         if(user.data.message){

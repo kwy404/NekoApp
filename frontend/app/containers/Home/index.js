@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
- import React, { Component, useState } from 'react';
+ import React from 'react';
  import { Helmet } from 'react-helmet';
  import styled from 'styled-components';
  
@@ -23,54 +23,35 @@
  import { Welcome } from '../Welcome';
  import axios from 'axios'
 
-const config = require('../../socket/config');
+ const config = require('../../socket/config');
 
- export function HomePage() {
-  const [user, setUser] = useState({});
-  const [logged, setLogged] = useState(false);
-  const [sendApi, setSendApi] = useState(false);
-
-  const estouLogado = usuario => {
-    setUser(usuario)
-    setLogged(true)
-    socket.wc.connect();
-    socket.wg.connect();
-  }
-  
-  const logout = () => {
-    setLogged(false)
-    setUser({})
-    window.localStorage.setItem(`token`, null)
-    socket.wc.disconnect();
-    socket.wg.disconnect();
-  }
-
-  const validarToken = async () => {
-    if(!sendApi){
-      setSendApi(true)
-      const user = await axios.post(`${config.configSite.api}/api/v1/validation_token?token=${window.localStorage.getItem('token')}`)
-      if(user.data.username){
-        estouLogado(user.data)
-      }
+ export class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.state = {
     }
-    
   }
-  validarToken()
+  componentDidMount(){
+    // this.validarToken()
+  }
+  render(){
    return (
      <div>
         <Helmet
         defaultTitle={`NekoApp - Início`}
         >
-        <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <div>
-        { logged ? <Dashboard 
-        logout={logout}
-        user={user}/>
-        : <Welcome estouLogado={() => estouLogado}/>
+        { this.props.logged ? <Dashboard
+        route={this.props.route}
+        logout={this.props.logout}
+        user={this.props.user}/>
+        : <Welcome estouLogado={() => this.props.estouLogado}/>
         }
         </div>
      </div>
    );
+  }
  }
  

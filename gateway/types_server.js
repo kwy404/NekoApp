@@ -1,5 +1,6 @@
 const wsG = require("./dist/socket_gateway/messages.js");
 const wsC = require("./dist/socket_chat/messages.js");
+const wsV = require("./dist/socket_validation/messages.js");
 
 const types = [
     { 
@@ -13,7 +14,13 @@ const types = [
         server: "chat",
         void: wsC,
         message: "Chat"
-    }
+    },
+    { 
+        type: "v",
+        server: "validation",
+        void: wsV,
+        message: "Validation"
+    },
 ]
 
 const typeServer = t => {
